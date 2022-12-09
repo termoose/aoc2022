@@ -48,7 +48,6 @@ impl Cargo {
             self.state.insert(from, fs);
 
             let to_stack = self.state.get(&to);
-
             if to_stack.is_some() {
                 let mut ts = to_stack.unwrap().clone();
                 ts.insert(0, elem);
@@ -67,17 +66,12 @@ impl Cargo {
             let remaining: Vec<char> = fs[(count as usize)..].to_vec();
 
             self.state.insert(from, remaining);
-            //println!("fs: {:?}", fs);
-            //println!("{:?}", crates);
 
             let to_stack = self.state.get(&to);
             if to_stack.is_some() {
                 let ts = to_stack.unwrap().clone();
                 crates.extend(&ts);
-                //println!("{:?}", crates);
                 self.state.insert(to, crates);
-
-                //println!("{:?}", self.state);
             }
         }
     }
